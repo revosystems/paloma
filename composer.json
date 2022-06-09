@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "revosystems/paloma",
+    "description": "This is my package paloma",
     "keywords": [
-        ":vendor_name",
+        "revosystems",
         "laravel",
-        ":package_slug"
+        "paloma"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/revosystems/paloma",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "aleixgilaguilar",
+            "email": "aleix.gil@revo.works",
             "role": "Developer"
         }
     ],
@@ -25,7 +25,6 @@
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
@@ -35,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Revo\\Paloma\\": "src",
+            "Revo\\Paloma\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Revo\\Paloma\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -56,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Revo\\Paloma\\PalomaServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "Paloma": "Revo\\Paloma\\Facades\\Paloma"
             }
         }
     },

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Revo\Paloma\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class PalomaCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'paloma';
 
     public $description = 'My command';
 
