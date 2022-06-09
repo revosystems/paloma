@@ -28,9 +28,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_paloma_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_sent_sms_table.php.stub';
         $migration->up();
-        */
     }
 }
