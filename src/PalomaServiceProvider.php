@@ -2,9 +2,9 @@
 
 namespace Revo\Paloma;
 
+use Revo\Paloma\Commands\PalomaCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Revo\Paloma\Commands\PalomaCommand;
 
 class PalomaServiceProvider extends PackageServiceProvider
 {
