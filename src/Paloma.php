@@ -2,9 +2,9 @@
 
 namespace Revo\Paloma;
 
-use Revo\Paloma\Exceptions\TenantCannotSendSmsException;
-use Revo\Paloma\Exceptions\SmsException;
 use Revo\Paloma\Contracts\Sender;
+use Revo\Paloma\Exceptions\SmsException;
+use Revo\Paloma\Exceptions\TenantCannotSendSmsException;
 use Revo\Paloma\Models\SentSms;
 
 /**
@@ -20,20 +20,19 @@ class Paloma
     public function send(string $phone, string $message, string $service)
     {
         if (! $this->hasBalance()) {
-            throw new TenantCannotSendSmsException;
+            throw new TenantCannotSendSmsException();
         }
 
         try {
-
             $smsResponse = $this->sender->message()->send([
                 'from' => config('paloma.sms_from'),
-                'to'   => $phone,
+                'to' => $phone,
                 'text' => $message,
             ]);
         } catch (\Exception $e) {
             throw new SmsException($e->getMessage());
         }
-            
+
         $smsResponseStatus = $smsResponse->current()['status'];
         if ($smsResponseStatus != 0) {
             throw new SmsException("Error status: {$smsResponseStatus}");
@@ -52,7 +51,7 @@ class Paloma
     private function logSms(string $phone, string $message, string $service)
     {
         SentSms::create([
-            'phone'   => $phone,
+            'phone' => $phone,
             'message' => $message,
             'service' => $service,
         ]);

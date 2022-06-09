@@ -7,11 +7,10 @@ use Revo\Paloma\Exceptions\SmsException;
 use Revo\Paloma\Fakers\FakeSmsSender;
 use Revo\Paloma\Models\SentSms;
 use Revo\Paloma\Paloma;
-use Revo\Paloma\Tests\TestCase;
 
 class PalomaTest extends TestCase
 {
-    public function setUp() : Void
+    public function setUp(): Void
     {
         parent::setUp();
         app()->bind(Sender::class, FakeSmsSender::class);
@@ -41,7 +40,7 @@ class PalomaTest extends TestCase
     /** @test */
     public function sms_is_not_sent_if_client_fails_and_SmsException_is_throwed()
     {
-        app()->bind(Sender::class, fn() => new FakeSmsSender(shouldFail: true));
+        app()->bind(Sender::class, fn () => new FakeSmsSender(shouldFail: true));
 
         $this->expectException(SmsException::class);
 

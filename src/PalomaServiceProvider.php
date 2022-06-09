@@ -2,11 +2,11 @@
 
 namespace Revo\Paloma;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Nexmo\Client;
 use Revo\Paloma\Commands\PalomaCommand;
 use Revo\Paloma\Contracts\Sender;
-use Nexmo\Client;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class PalomaServiceProvider extends PackageServiceProvider
 {
