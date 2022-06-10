@@ -2,9 +2,7 @@
 
 namespace Revo\Paloma;
 
-use Nexmo\Client;
 use Revo\Paloma\Commands\PalomaCommand;
-use Revo\Paloma\Contracts\Sender;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -28,6 +26,6 @@ class PalomaServiceProvider extends PackageServiceProvider
     public function register()
     {
         parent::register();
-        $this->app->bind(Sender::class, Client::class);
+        $this->app->bind(\Revo\Paloma\Contracts\Sender::class, \Revo\Paloma\Sender::class);
     }
 }
