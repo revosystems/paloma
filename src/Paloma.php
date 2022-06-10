@@ -14,6 +14,7 @@ use Revo\Paloma\Models\SentSms;
 class Paloma
 {
     protected string $tenant;
+
     public function __construct(protected Sender $sender, string $tenant = null)
     {
         $usernameField = config('paloma.usernameField', 'tenant');
