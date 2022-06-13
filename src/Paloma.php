@@ -13,8 +13,12 @@ use Revo\Paloma\Models\SentSms;
  */
 class Paloma
 {
-    public function __construct(protected Sender $sender, protected string $tenant)
+    protected string $tenant;
+
+    public function __construct(protected Sender $sender, string $tenant = null)
     {
+        $usernameField = config('paloma.usernameField', 'tenant');
+        $this->tenant = $tenant ?? auth()->user()->$usernameField;
     }
 
     public function send(string $phone, string $message, string $service)

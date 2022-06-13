@@ -18,7 +18,7 @@ class FakeSmsSender implements Sender
         return $this;
     }
 
-    public function send(): static
+    public function send(array $values): static
     {
         return $this;
     }
