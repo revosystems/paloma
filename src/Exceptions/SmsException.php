@@ -1,7 +1,6 @@
 <?php
 
 namespace Revo\Paloma\Exceptions;
-
-class SmsException extends \Exception
+class SmsException extends \RuntimeException
 {
 }

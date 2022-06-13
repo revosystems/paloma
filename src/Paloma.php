@@ -23,9 +23,7 @@ class Paloma
 
     public function send(string $phone, string $message, string $service)
     {
-        if (! $this->hasBalance()) {
-            throw new TenantCannotSendSmsException();
-        }
+        throw_unless($this->hasBalance(), TenantCannotSendSmsException::class);
 
         try {
             $smsResponse = $this->sender->message()->send([
@@ -38,9 +36,7 @@ class Paloma
         }
 
         $smsResponseStatus = $smsResponse->current()['status'];
-        if ($smsResponseStatus != 0) {
-            throw new SmsException("Error status: {$smsResponseStatus}");
-        }
+        throw_if($smsResponseStatus != 0, SmsException::class, "Error status: {$smsResponseStatus}");
 
         $this->logSms($phone, $message, $service);
 

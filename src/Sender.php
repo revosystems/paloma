@@ -6,12 +6,12 @@ use Nexmo\Laravel\Facade\Nexmo;
 
 class Sender implements Contracts\Sender
 {
-    public function message(): static
+    public function message()
     {
         return Nexmo::message();
     }
 
-    public function send(array $values): static
+    public function send(array $values)
     {
         return Nexmo::send($values);
     }

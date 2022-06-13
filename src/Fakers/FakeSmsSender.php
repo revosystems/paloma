@@ -13,12 +13,12 @@ class FakeSmsSender implements Sender
         $this->current = ['status' => strval((int)$shouldFail)];
     }
 
-    public function message(): static
+    public function message()
     {
         return $this;
     }
 
-    public function send(array $values): static
+    public function send(array $values)
     {
         return $this;
     }

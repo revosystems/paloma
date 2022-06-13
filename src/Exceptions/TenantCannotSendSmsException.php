@@ -1,7 +1,6 @@
 <?php
 
 namespace Revo\Paloma\Exceptions;
-
-class TenantCannotSendSmsException extends \Exception
+class TenantCannotSendSmsException extends \RuntimeException
 {
 }
