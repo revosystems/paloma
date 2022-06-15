@@ -7,7 +7,8 @@ use Revo\Paloma\Contracts\Sender;
 class FakeSmsSender implements Sender
 {
     public function __construct(protected bool $shouldFail = false)
-    {}
+    {
+    }
 
     public function send(string $phone, string $message)
     {

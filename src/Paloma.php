@@ -14,7 +14,8 @@ use Revo\Paloma\Models\SentSms;
 class Paloma
 {
     public function __construct(protected Sender $sender)
-    {}
+    {
+    }
 
     public function send(string $phone, string $message, string $service)
     {

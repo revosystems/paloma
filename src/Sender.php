@@ -20,6 +20,7 @@ class Sender implements Contracts\Sender
         } catch (\Exception $e) {
             throw new SmsException($e->getMessage());
         }
+
         return $this;
     }
 
