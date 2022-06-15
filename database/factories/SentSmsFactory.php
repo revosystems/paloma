@@ -11,9 +11,9 @@ class SentSmsFactory extends Factory
     public function definition(): array
     {
         return [
-            'phone'   => '123456789',
-            'service' => 'sms service',
-            'message' => 'sms message',
+            'phone'   => $this->faker->phoneNumber(),
+            'service' => "sms service {$this->faker->word()}",
+            'message' => "sms message {$this->faker->word()}",
         ];
     }
 }

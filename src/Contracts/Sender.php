@@ -4,9 +4,7 @@ namespace Revo\Paloma\Contracts;
 
 interface Sender
 {
-    public function message();
-
-    public function send(array $values);
-
-    public function current(): array;
+    public function send(string $phone, string $message);
+    public function hasFailed(): bool;
+    public function errorMessage(): string;
 }

@@ -21,18 +21,18 @@ class PalomaTest extends TestCase
     {
         $this->assertCount(0, SentSms::all());
 
-        $response = app(Paloma::class, ['tenant' => 'senderTenant'])->send('123456789', 'message prova', 'service prova');
+        $response = app(Paloma::class)->send('123456789', 'message prova', 'service prova');
 
         $this->assertTrue($response);
         $this->assertCount(1, SentSms::all());
     }
 
-    /** @test */
+    // /** @test */
     // public function sms_is_not_sent_if_tenant_has_no_balance_and_NoBalanceException_is_throwed()
     // {
     //     $this->expectException(TenantCannotSendSmsException::class);
 
-    //     app(Paloma::class, ['tenant' => 'senderTenant'])->send('123456789', 'message prova', 'service prova');
+    //     app(Paloma::class)->send('123456789', 'message prova', 'service prova');
 
     //     $this->assertCount(0, SentSms::all());
     // }
@@ -44,7 +44,7 @@ class PalomaTest extends TestCase
 
         $this->expectException(SmsException::class);
 
-        app(Paloma::class, ['tenant' => 'senderTenant'])->send('123456789', 'message prova', 'service prova');
+        app(Paloma::class)->send('123456789', 'message prova', 'service prova');
 
         $this->assertCount(0, SentSms::all());
     }

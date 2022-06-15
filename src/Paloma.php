@@ -13,30 +13,16 @@ use Revo\Paloma\Models\SentSms;
  */
 class Paloma
 {
-    protected string $tenant;
-
-    public function __construct(protected Sender $sender, string $tenant = null)
-    {
-        $usernameField = config('paloma.usernameField', 'tenant');
-        $this->tenant = $tenant ?? auth()->user()->$usernameField;
-    }
+    public function __construct(protected Sender $sender)
+    {}
 
     public function send(string $phone, string $message, string $service)
     {
         throw_unless($this->hasBalance(), TenantCannotSendSmsException::class);
 
-        try {
-            $smsResponse = $this->sender->message()->send([
-                'from' => config('paloma.sms_from'),
-                'to' => $phone,
-                'text' => $message,
-            ]);
-        } catch (\Exception $e) {
-            throw new SmsException($e->getMessage());
-        }
+        $smsResponse = $this->sender->send($phone, $message);
 
-        $smsResponseStatus = $smsResponse->current()['status'];
-        throw_if($smsResponseStatus != 0, SmsException::class, "Error status: {$smsResponseStatus}");
+        throw_if($smsResponse->hasFailed(), SmsException::class, $smsResponse->errorMessage());
 
         $this->logSms($phone, $message, $service);
 

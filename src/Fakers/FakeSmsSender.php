@@ -6,25 +6,21 @@ use Revo\Paloma\Contracts\Sender;
 
 class FakeSmsSender implements Sender
 {
-    protected array $current;
+    public function __construct(protected bool $shouldFail = false)
+    {}
 
-    public function __construct(bool $shouldFail = false)
-    {
-        $this->current = ['status' => strval((int)$shouldFail)];
-    }
-
-    public function message()
+    public function send(string $phone, string $message)
     {
         return $this;
     }
 
-    public function send(array $values)
+    public function hasFailed(): bool
     {
-        return $this;
+        return $this->shouldFail;
     }
 
-    public function current(): array
+    public function errorMessage(): string
     {
-        return $this->current;
+        return 'Sms failed to send.';
     }
 }
