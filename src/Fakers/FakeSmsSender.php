@@ -11,7 +11,8 @@ class FakeSmsSender implements Sender
     }
 
     public function send(string $phone, string $message)
-    {}
+    {
+    }
 
     public function errorMessage(): ?string
     {

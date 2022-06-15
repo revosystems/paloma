@@ -20,7 +20,7 @@ class Sender implements Contracts\Sender
         } catch (\RuntimeException $e) {
             $this->errorMessage = $e->getMessage();
         }
-        
+
         if ($this->hasFailed($smsResponse)) {
             $this->errorMessage = 'The message failed with status: ' . $this->smsResponse->current()['status'];
         }
