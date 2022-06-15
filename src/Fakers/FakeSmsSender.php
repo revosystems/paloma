@@ -11,17 +11,10 @@ class FakeSmsSender implements Sender
     }
 
     public function send(string $phone, string $message)
-    {
-        return $this;
-    }
+    {}
 
-    public function hasFailed(): bool
+    public function errorMessage(): ?string
     {
-        return $this->shouldFail;
-    }
-
-    public function errorMessage(): string
-    {
-        return 'Sms failed to send.';
+        return $this->shouldFail ? 'Sms failed to send.' : null;
     }
 }

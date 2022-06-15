@@ -21,9 +21,9 @@ class Paloma
     {
         throw_unless($this->hasBalance(), TenantCannotSendSmsException::class);
 
-        $smsResponse = $this->sender->send($phone, $message);
+        $this->sender->send($phone, $message);
 
-        throw_if($smsResponse->hasFailed(), SmsException::class, $smsResponse->errorMessage());
+        throw_if($this->sender->errorMessage(), SmsException::class, $this->sender->errorMessage());
 
         $this->logSms($phone, $message, $service);
 

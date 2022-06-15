@@ -3,34 +3,36 @@
 namespace Revo\Paloma;
 
 use Nexmo\Laravel\Facade\Nexmo;
-use Revo\Paloma\Exceptions\SmsException;
+use Nexmo\Message\Message as NexmoResponse;
 
 class Sender implements Contracts\Sender
 {
-    protected $smsResponse;
+    protected ?string $errorMessage = null;
 
     public function send(string $phone, string $message)
     {
         try {
-            $this->smsResponse = Nexmo::message()->send([
+            $smsResponse = Nexmo::message()->send([
                 'from' => config('paloma.sms_from'),
                 'to' => $phone,
                 'text' => $message,
             ]);
-        } catch (\Exception $e) {
-            throw new SmsException($e->getMessage());
+        } catch (\RuntimeException $e) {
+            $this->errorMessage = $e->getMessage();
         }
-
-        return $this;
+        
+        if ($this->hasFailed($smsResponse)) {
+            $this->errorMessage = 'The message failed with status: ' . $this->smsResponse->current()['status'];
+        }
     }
 
-    public function hasFailed(): bool
+    public function errorMessage(): ?string
     {
-        return $this->smsResponse->current()['status'] != 0;
+        return $this->errorMessage;
     }
 
-    public function errorMessage(): string
+    protected function hasFailed(NexmoResponse $smsResponse): bool
     {
-        return 'The message failed with status: ' . $this->smsResponse->current()['status'];
+        return $smsResponse->current()['status'] != 0;
     }
 }
