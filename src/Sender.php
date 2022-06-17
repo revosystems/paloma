@@ -4,9 +4,13 @@ namespace Revo\Paloma;
 
 use Nexmo\Laravel\Facade\Nexmo;
 use Nexmo\Message\Message as NexmoResponse;
+use Revo\Paloma\Exceptions\SmsException;
 
 class Sender implements Contracts\Sender
 {
+    /**
+     * @throws SmsException
+     */
     public function send(string $phone, string $message)
     {
         try {
@@ -16,18 +20,14 @@ class Sender implements Contracts\Sender
                 'text' => $message,
             ]);
         } catch (\RuntimeException $e) {
-            $errorMessage = $e->getMessage();
+            throw new SmsException($e->getMessage());
         }
 
-        if ($this->hasFailed($smsResponse)) {
-            $errorMessage = 'The message failed with status: ' . $this->smsResponse->current()['status'];
-        }
-
-        throw_if($errorMessage, SmsException::class, $errorMessage);
+        throw_if($this->getStatus($smsResponse) != 0, SmsException::class, "The message failed with status: {$this->getStatus($smsResponse)}");
     }
 
-    protected function hasFailed(NexmoResponse $smsResponse): bool
+    protected function getStatus(NexmoResponse $smsResponse): bool
     {
-        return $smsResponse->current()['status'] != 0;
+        return $smsResponse->current()['status'];
     }
 }

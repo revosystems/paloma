@@ -11,6 +11,9 @@ class FakeSmsSender implements Sender
     {
     }
 
+    /**
+     * @throws SmsException
+     */
     public function send(string $phone, string $message)
     {
         throw_if($this->shouldFail, SmsException::class, 'Sms failed to send.');
