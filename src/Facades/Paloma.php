@@ -11,6 +11,6 @@ class Paloma extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'paloma';
+        return \Revo\Paloma\Paloma::class;
     }
 }

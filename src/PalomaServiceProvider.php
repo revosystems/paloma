@@ -19,7 +19,13 @@ class PalomaServiceProvider extends PackageServiceProvider
             ->name('paloma')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_paloma_table')
+            ->hasMigration('create_sent_sms_table')
             ->hasCommand(PalomaCommand::class);
+    }
+
+    public function register()
+    {
+        parent::register();
+        $this->app->bind(\Revo\Paloma\Contracts\Sender::class, \Revo\Paloma\Sender::class);
     }
 }
