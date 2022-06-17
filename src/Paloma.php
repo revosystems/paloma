@@ -7,23 +7,21 @@ use Revo\Paloma\Exceptions\SmsException;
 use Revo\Paloma\Exceptions\TenantCannotSendSmsException;
 use Revo\Paloma\Models\SentSms;
 
-/**
- * @throws SmsException
- * @throws TenantCannotSendSmsException
- */
 class Paloma
 {
     public function __construct(protected Sender $sender)
     {
     }
 
+    /**
+     * @throws SmsException
+     * @throws TenantCannotSendSmsException
+     */
     public function send(string $phone, string $message, string $service)
     {
         throw_unless($this->hasBalance(), TenantCannotSendSmsException::class);
 
         $this->sender->send($phone, $message);
-
-        throw_if($this->sender->errorMessage(), SmsException::class, $this->sender->errorMessage());
 
         $this->logSms($phone, $message, $service);
 

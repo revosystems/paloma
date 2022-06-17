@@ -7,8 +7,6 @@ use Nexmo\Message\Message as NexmoResponse;
 
 class Sender implements Contracts\Sender
 {
-    protected ?string $errorMessage = null;
-
     public function send(string $phone, string $message)
     {
         try {
@@ -18,17 +16,14 @@ class Sender implements Contracts\Sender
                 'text' => $message,
             ]);
         } catch (\RuntimeException $e) {
-            $this->errorMessage = $e->getMessage();
+            $errorMessage = $e->getMessage();
         }
 
         if ($this->hasFailed($smsResponse)) {
-            $this->errorMessage = 'The message failed with status: ' . $this->smsResponse->current()['status'];
+            $errorMessage = 'The message failed with status: ' . $this->smsResponse->current()['status'];
         }
-    }
 
-    public function errorMessage(): ?string
-    {
-        return $this->errorMessage;
+        throw_if($errorMessage, SmsException::class, $errorMessage);
     }
 
     protected function hasFailed(NexmoResponse $smsResponse): bool

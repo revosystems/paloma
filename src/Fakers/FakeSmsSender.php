@@ -3,6 +3,7 @@
 namespace Revo\Paloma\Fakers;
 
 use Revo\Paloma\Contracts\Sender;
+use Revo\Paloma\Exceptions\SmsException;
 
 class FakeSmsSender implements Sender
 {
@@ -12,10 +13,6 @@ class FakeSmsSender implements Sender
 
     public function send(string $phone, string $message)
     {
-    }
-
-    public function errorMessage(): ?string
-    {
-        return $this->shouldFail ? 'Sms failed to send.' : null;
+        throw_if($this->shouldFail, SmsException::class, 'Sms failed to send.');
     }
 }
