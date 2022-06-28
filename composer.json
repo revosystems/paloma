@@ -1,6 +1,6 @@
 {
     "name": "revosystems/paloma",
-    "description": "This is my package paloma",
+    "description": "Package to send Sms via Vonage/Nexmo",
     "keywords": [
         "revosystems",
         "laravel",
