@@ -18,7 +18,6 @@ class PalomaServiceProvider extends PackageServiceProvider
         $package
             ->name('paloma')
             ->hasConfigFile()
-            ->hasViews()
             ->hasMigration('create_sent_sms_table')
             ->hasCommand(PalomaCommand::class);
     }
