@@ -33,7 +33,7 @@ class Paloma
         return true;
     }
 
-    private function logSms(string $phone, string $message, string $service)
+    private function logSms(string $phone, string $message, string $service): void
     {
         SentSms::create([
             'phone' => $phone,

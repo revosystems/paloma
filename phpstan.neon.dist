@@ -1,14 +1,19 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
-    level: 4
     paths:
-        - src
         - config
         - database
-    tmpDir: build/phpstan
-    checkOctaneCompatibility: true
-    checkModelProperties: true
-    checkMissingIterableValueType: false
-
+        - src
+        - tests
+    level: 9
+    ignoreErrors:
+        - '#Method Revo\\Paloma\\Database\\Factories\\SentSmsFactory::definition\(\) return type has no value type specified(.*)#'
+        - '#PHPDoc tag @throws with type Revo\\Paloma\\Contracts\\SmsException is not subtype of Throwable#'
+        - '#Method Revo\\Paloma\\Sender::getStatus\(\) should return int\|null but returns mixed.#'
+        - '#Call to an undefined static method Nexmo\\Laravel\\Facade\\Nexmo::message\(\).#'
+        - '#Call to an undefined static method Revo\\Paloma\\Models\\SentSms::create\(\).#'
+        - '#Method Revo\\Paloma\\Tests\\PalomaTest::(.*) has no return type specified.#'
+        - '#Method (.*)::send(.*) has no return type specified.#'
+        - "#Cannot access offset 'status' on mixed.#"
+        - '#Cannot call method bind\(\) on mixed.#'
+        - '#Cannot call method send\(\) on mixed.#'
+        - '#Cannot call method set\(\) on mixed.#'
