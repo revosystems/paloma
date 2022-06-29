@@ -26,8 +26,8 @@ class Sender implements Contracts\Sender
         throw_if($this->getStatus($smsResponse) != 0, SmsException::class, "The message failed with status: {$this->getStatus($smsResponse)}");
     }
 
-    protected function getStatus(NexmoResponse $smsResponse): bool
+    protected function getStatus(NexmoResponse $smsResponse): int|null
     {
-        return $smsResponse->current()['status'];
+        return $smsResponse->current()['status'] ?? null;
     }
 }

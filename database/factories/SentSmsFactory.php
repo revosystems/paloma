@@ -2,6 +2,7 @@
 
 namespace Revo\Paloma\Database\Factories;
 
+use Revo\Paloma\Models\SentSms;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class SentSmsFactory extends Factory
