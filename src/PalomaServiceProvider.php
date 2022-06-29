@@ -2,7 +2,6 @@
 
 namespace Revo\Paloma;
 
-use Revo\Paloma\Commands\PalomaCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -18,8 +17,7 @@ class PalomaServiceProvider extends PackageServiceProvider
         $package
             ->name('paloma')
             ->hasConfigFile()
-            ->hasMigration('create_sent_sms_table')
-            ->hasCommand(PalomaCommand::class);
+            ->hasMigration('create_sent_sms_table');
     }
 
     public function register()
