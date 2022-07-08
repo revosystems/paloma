@@ -11,11 +11,11 @@ class Sender implements Contracts\Sender
     /**
      * @throws SmsException
      */
-    public function send(string $phone, string $message)
+    public function send(string $phone, string $message, ?string $from = null)
     {
         try {
             $smsResponse = Nexmo::message()->send([
-                'from' => config('paloma.sms_from'),
+                'from' => $from ?? config('paloma.sms_from'),
                 'to' => $phone,
                 'text' => $message,
             ]);
