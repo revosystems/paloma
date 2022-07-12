@@ -18,6 +18,7 @@ class Sender implements Contracts\Sender
                 'from' => $from ?? config('paloma.sms_from'),
                 'to' => $phone,
                 'text' => $message,
+                'type' => 'unicode',
             ]);
         } catch (\RuntimeException $e) {
             throw new SmsException($e->getMessage());
