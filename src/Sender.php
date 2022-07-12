@@ -16,7 +16,7 @@ class Sender implements Contracts\Sender
         try {
             $smsResponse = Nexmo::message()->send([
                 'from' => $from ?? config('paloma.sms_from'),
-                'to'   => $phone,
+                'to' => $phone,
                 'text' => $message,
                 'type' => 'unicode',
             ]);
