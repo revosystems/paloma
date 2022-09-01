@@ -2,13 +2,14 @@
 
 namespace Revo\Paloma;
 
-class PalomaMessage {
-
+class PalomaMessage
+{
     public function __construct(
         protected string $message,
         protected string $service,
         protected ?string $from = null,
-    ) {}
+    ) {
+    }
 
     public function __get($name): mixed
     {

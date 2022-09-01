@@ -4,8 +4,8 @@ namespace Revo\Paloma;
 
 use Revo\Paloma\Facades\Paloma;
 
-class PalomaChannel {
-    
+class PalomaChannel
+{
     public function send($notifiable, $notification)
     {
         $message = $notification->toPaloma($notifiable);
