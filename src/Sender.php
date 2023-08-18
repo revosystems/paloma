@@ -2,12 +2,12 @@
 
 namespace Revo\Paloma;
 
+use Revo\Paloma\Exceptions\SmsException;
 use Vonage\Client;
 use Vonage\Client\Credentials\Basic;
-use Vonage\SMS\Message\SMS;
-use Vonage\SMS\Collection;
-use Revo\Paloma\Exceptions\SmsException;
 use Vonage\Client\Exception\Exception as VonageClientException;
+use Vonage\SMS\Collection;
+use Vonage\SMS\Message\SMS;
 
 class Sender implements Contracts\Sender
 {
@@ -39,10 +39,11 @@ class Sender implements Contracts\Sender
 
     protected function vonageClient(): Client
     {
-        $credentials  = app(Basic::class, [
+        $credentials = app(Basic::class, [
             'key' => config('paloma.vonage_key'),
-            'secret' => config('paloma.vonage_secret')
+            'secret' => config('paloma.vonage_secret'),
         ]);
+
         return app(Client::class, ['credentials' => $credentials]);
     }
 }
