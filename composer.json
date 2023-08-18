@@ -18,8 +18,8 @@
     "require": {
         "php": "^8.0",
         "illuminate/contracts": "^8.0",
-        "nexmo/laravel": "^2.4",
-        "spatie/laravel-package-tools": "^1.9.2"
+        "spatie/laravel-package-tools": "^1.9.2",
+        "vonage/client": "^4.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
@@ -47,7 +47,10 @@
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {

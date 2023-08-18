@@ -30,7 +30,9 @@ This is the contents of the published config file:
 
 ```php
 return [
-    'sms_from' => env('NEXMO_FROM_NUMBER', 'Vonage APIs'),
+    'sms_from' => env('VONAGE_FROM_NUMBER', 'Vonage APIs'),
+    'vonage_key' => env('VONAGE_KEY'),
+    'vonage_secret' => env('VONAGE_SECRET'),
 ];
 ```
 
@@ -44,6 +46,8 @@ use Revo\Paloma\Facades\Paloma;
 
 Paloma::send(string $phone, string $message, string $service, ?string $from = null)
 ```
+The phone must contain the country code prefix (34 or +34).
+A wrong phone will send anything. Vonage cannot validate the phone.
 
 To notify using Paloma you should add the channel and method to your notification:
 ```php
